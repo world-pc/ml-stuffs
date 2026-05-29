@@ -1,26 +1,9 @@
 from keras.datasets import mnist
-import curses
-import time
+import numpy as np
 
 #load in the training and testing data from MNIST
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-stdscr = curses.initscr()
+#create a matrix of weights for each neuron (10 neurons in this case)
+W = np.random.randn(10, 784) * 0.01
 
-counter = 1
-for image in x_train:
-    stdscr.clear()
-
-    for row in range(0, len(image)):
-        for pixel in range(0, len(image[row])):
-            if image[row][pixel] > 0:
-                stdscr.addstr(row, pixel, '@')
-
-    stdscr.addstr(40, 0, f'image {counter}/{len(x_train)}')
-
-    stdscr.refresh()
-
-    counter += 1
-    time.sleep(.025)
-
-stdscr.getch()
