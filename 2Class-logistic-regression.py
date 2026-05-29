@@ -42,7 +42,6 @@ def computeRegression():
         yhat = np.clip(yhat, 1e-7, 1 - 1e-7)
 
         cross_entropy = -np.mean(ys * np.log(yhat) + (1 - ys) * np.log(1-yhat));
-        #print(f"iteration {i} cross entropy = {cross_entropy}")
 
         dm = np.mean((yhat - ys) * xs)
         db = np.mean(yhat - ys)
